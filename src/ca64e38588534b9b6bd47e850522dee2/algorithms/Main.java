@@ -99,16 +99,20 @@ public class Main {
         int[] array = getIntArray();
         ThreeSum ts = new ThreeSum(array);
 
-        startClock();
-        ts.simpleSolution();
-        stopClock();
-        reportTime("3SUM brute force solution");
+//        startClock();
+//        ts.simpleSolution();
+//        stopClock();
+//        reportTime("3SUM brute force solution");
 
         startClock();
-        int count = ts.optimizedSolution();
+        ts.optimizedSolution();
         stopClock();
         reportTime("3SUM optimized solution with binary search");
 
+        startClock();
+        int count = ts.quadraticSolution();
+        stopClock();
+        reportTime("3SUM quadratic solution");
 
         System.out.println("Number of zero-sum triples = " + count);
     }
