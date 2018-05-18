@@ -6,6 +6,25 @@ import ca64e38588534b9b6bd47e850522dee2.algorithms.search.BinarySearch;
 import java.util.Scanner;
 
 public class Main {
+
+    private static long startTime;
+    private static long endTime;
+
+    private static void startClock() {
+        startTime = System.nanoTime();
+    }
+
+    private static void stopClock() {
+        endTime = System.nanoTime();
+    }
+
+    private static void reportTime(String message) {
+        long duration = (endTime - startTime);
+        double msDuration = duration / 1000000;
+        double sDuration = duration / 1000000000;
+        System.out.println("Execution time for " + message + ": " + duration + "ns = " + msDuration + "ms = " + sDuration + "s");
+    }
+
     private static int[] getIntArray() {
         Scanner scanner = new Scanner(System.in);
 
@@ -73,13 +92,39 @@ public class Main {
         } else {
             System.out.println("Element found at position " + pos);
         }
+    }
 
+    private static void threeSum() {
+        // sample input: 8 elements: 30 -40 -20 -10 40 0 10 5
+        int[] array = getIntArray();
+        ThreeSum ts = new ThreeSum(array);
+
+        startClock();
+        ts.simpleSolution();
+        stopClock();
+        reportTime("3SUM brute force solution");
+
+        startClock();
+        int count = ts.optimizedSolution();
+        stopClock();
+        reportTime("3SUM optimized solution with binary search");
+
+
+        System.out.println("Number of zero-sum triples = " + count);
     }
 
     public static void main(String[] args) {
-//        System.out.println("Running unionFindQuickFind.");  unionFindQuickFind();
-//        System.out.println("Running unionFindQuickUnion."); unionFindQuickUnion();
-        System.out.println("Running binarySearch."); binarySearch();
+//        System.out.println("Running unionFindQuickFind.");
+//        unionFindQuickFind();
+//
+//        System.out.println("Running unionFindQuickUnion.");
+//        unionFindQuickUnion();
+//
+//        System.out.println("Running binarySearch.");
+//        binarySearch();
+
+        System.out.println("Running threeSum.");
+        threeSum();
 
     }
 }
